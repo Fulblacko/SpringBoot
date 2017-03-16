@@ -3,6 +3,8 @@ package fr.polytech.business;
 public class Post {
     private String content;
 
+    private Post() {}
+
     public Post(String content) {
         this.content = content;
     }
