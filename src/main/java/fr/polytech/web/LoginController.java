@@ -8,8 +8,18 @@ package fr.polytech.web;
  * reproduit, utilise ou modifie sans l'avis express de ses auteurs.
  */
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 /**
  * @author Sudreau
  */
+@Controller
 public class LoginController {
+
+    @RequestMapping("/login")
+    public String loginPage(){
+        return "login";
+    }
+
 }

@@ -1,6 +1,18 @@
 package fr.polytech.business;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "posts")
 public class Post {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "content")
     private String content;
 
     private Post() {}

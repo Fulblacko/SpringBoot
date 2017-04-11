@@ -1,9 +1,8 @@
 package fr.polytech.business;
 
 import fr.polytech.business.interfaces.PublicationService;
-import fr.polytech.repository.interfaces.PostRepository;
+import fr.polytech.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -9,3 +9,8 @@ body {
 .feed{
     padding: 10px 0px;
 }
+
+.logout{
+    padding-top: 50px;
+    margin: auto;
+}
