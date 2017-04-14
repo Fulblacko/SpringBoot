@@ -1,0 +1,62 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+.row-publisher {
+    width: 70%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.post {
+    width: 70%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    margin-right: 70%; 
+    text-align: center;
+    border: 1px solid;
+    border-color: #337ab7;
+    background-color: #808080;
+    color : white;
+    opacity: 0.5;
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+.feed {
+    padding: 10px 0px;
+}
+
+.post_info {
+    text-align: right;
+}
+
+.post_info p {
+    display: inline;
+}
+
+.comment p {
+    display: inline;
+}
+
+.comment .comment_title {
+    text-align: left;
+}
+
+.new_comment {
+    margin-top: -15px;
+    padding-bottom: 50px;
+}
+
+.new_comment_open {
+    float: left;
+}

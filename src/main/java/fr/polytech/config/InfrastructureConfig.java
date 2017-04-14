@@ -1,9 +1,22 @@
 package fr.polytech.config;
 
+/**
+ * Polytech Marseille
+ * Case 925 - 163, avenue de Luminy
+ * 13288 Marseille CEDEX 9
+ * <p>
+ * Ce fichier est l'oeuvre d'eleves de Polytech Marseille. Il ne peut etre
+ * reproduit, utilise ou modifie sans l'avis express de ses auteurs.
+ */
+
+/**
+ * @author Sudreau
+ */
+
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -11,8 +24,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 
+@Configuration
 @PropertySource("classpath:/applications.properties")
-@Import( SecurityConfig.class)
 public class InfrastructureConfig {
 
     @Value("${datasource.driverName}")
@@ -49,7 +62,7 @@ public class InfrastructureConfig {
         return builder
                 .setType(EmbeddedDatabaseType.H2)
                 .addScript("database/create-schema.sql")
-                .addScript("database/default-users.sql")
+                .addScript("database/create-defaults.sql")
                 .build();
     }
 }

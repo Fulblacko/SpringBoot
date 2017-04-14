@@ -1,0 +1,48 @@
+<html   lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <title>PolytechNet</title>
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="assets/css/register.css" rel="stylesheet"/>
+
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"/>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"/>
+        <![endif]-->
+    </head>
+
+    <body>
+        <div class="container">
+            <form th:object="${userForm}" th:action="@{/register}" method="POST" role="form" class="form-signin">
+                <h2 class="form-signin-heading">Create your account</h2>
+                <div class="form-group">
+                    <input type="text" th:field="*{username}" class="form-control" placeholder="Username"
+                                autofocus="true"/>
+                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="login-error">Nom d'utilisateur invalide</p>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" th:field="*{password}" class="form-control" placeholder="Password"/>
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="login-error">Mot de passe invalide</p>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" th:field="*{passwordConfirm}" class="form-control"
+                                placeholder="Confirm your password"/>
+                    <p th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}" class="login-error">Confirmation du mot de passe impossible.</p>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            </form>
+
+        </div>
+        <!-- /container -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"/>
+    </body>
+</html>

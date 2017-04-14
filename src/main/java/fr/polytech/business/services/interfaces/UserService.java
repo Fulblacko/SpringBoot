@@ -1,4 +1,4 @@
-package fr.polytech.repository;
+package fr.polytech.business.services.interfaces;
 
 /**
  * Polytech Marseille
@@ -13,11 +13,10 @@ package fr.polytech.repository;
  * @author Sudreau
  */
 
-import fr.polytech.business.Post;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import fr.polytech.business.User;
 
-@Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
+public interface UserService {
+    User save(User user);
 
+    User findByUsername(String username);
 }

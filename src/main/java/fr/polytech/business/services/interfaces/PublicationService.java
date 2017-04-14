@@ -1,4 +1,4 @@
-package fr.polytech.repository;
+package fr.polytech.business.services.interfaces;
 
 /**
  * Polytech Marseille
@@ -14,10 +14,13 @@ package fr.polytech.repository;
  */
 
 import fr.polytech.business.Post;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
+import java.util.List;
 
+public interface PublicationService {
+    void post(Post toPost);
+
+    Post getById(long id);
+
+    List<Post> fetchAll();
 }

@@ -1,4 +1,4 @@
-package fr.polytech.repository;
+package fr.polytech.business.services.interfaces;
 
 /**
  * Polytech Marseille
@@ -13,11 +13,8 @@ package fr.polytech.repository;
  * @author Sudreau
  */
 
-import fr.polytech.business.Post;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import fr.polytech.business.Comment;
 
-@Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
-
+public interface CommentService {
+    void post(Comment toPost);
 }

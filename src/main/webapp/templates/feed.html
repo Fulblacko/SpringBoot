@@ -1,14 +1,15 @@
 <html   lang="en"
         xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org">
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Starter Template for Bootstrap</title>
+        <title>PolytechNet</title>
 
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="/assets/css/main.css" rel="stylesheet"/>
+        <link href="/assets/css/feed.css" rel="stylesheet"/>
     </head>
 
     <body>
@@ -21,24 +22,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">#Polytech Net</a>
+                    <a class="navbar-brand" href="#">PolytechNet</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="/feed">Feed</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentification -->
+                        <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+                        <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="container">
-
-            <form th:action="@{/logout}" method="post">
-                    <input name="logout" type="submit" value="logout"/>
-            </form>
-
             <div class="starter-template">
                 <div class="row publisher">
                     <form method="post" th:action="share">
@@ -56,18 +56,64 @@
                     </form>
                 </div>
 
-                <div class="row feed" th:each="post: ${posts}">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <p th:text="${post.getContent()}"></p>
+                <div class="post" th:each="post: ${posts}">
+                    <div class="row feed">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <p th:text="${post.getContent()}"></p>
+
+                                    <a href="#" class="new_comment_open">Nouveau commentaire</a>
+
+                                    <div class="post_info">
+                                        <p th:text="${post.getLikes().size()}"></p>like(s),
+                                        <a href="#" class="comment_open"><p th:text="${post.getComments().size()}"></p> commentaire(s)</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="comments" style="display: none;">
+                        <div class="row comment" th:each="comment: ${post.getComments()}">
+                            <div class="col-md-6 pull-right">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="comment_title">
+                                            Par <p th:text="${comment.getAuthor().getUsername()}"></p>
+                                        </div>
+
+                                        <div class="comment_data">
+                                            <p th:text="${comment.getContent()}"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="new_comment" style="display: none;">
+                        <form method="post" th:action="comment">
+                            <div class="form-group">
+                                <div class="col-md-6 pull-right">
+                                <textarea name="content" class="form-control"
+                                          placeholder="Votre commentaire..."></textarea>
+                                </div>
+                                <input type="hidden" name="postId" th:value="${post.getId()}" />
+                            </div>
+                            <div class="form-group">
+                                <div class="pull-right">
+                                    <button type="submit" class="btn btn-primary">Commenter</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
         <script src="/assets/js/jquery.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/comments.js"></script>
     </body>
 </html>
